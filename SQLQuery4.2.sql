@@ -7,11 +7,11 @@ ON OWNER.Owner_no = PROPERTY.Owner_no
 WHERE PROPERTY.City is NOT NULL
 --2) ¬ывести список объектов недвижимости, по которым заключены
 --контракты.
-SELECT PROPERTY.City, PROPERTY.Street, PROPERTY.House, PROPERTY.Flat, PROPERTY.Rooms
+SELECT CONTRACT.*, PROPERTY.City, PROPERTY.Street, PROPERTY.House, PROPERTY.Flat, PROPERTY.Rooms
 FROM CONTRACT
-RIGHT JOIN PROPERTY
+ JOIN PROPERTY
 ON CONTRACT.Property_no = PROPERTY.Property_no
---3) ѕоказать список просмотров квартир и их потенциальных
+--3) ѕоказать список просмотров квартир и их потенциальных-----???
 --покупателей.
 SELECT BUYER.Lname, BUYER.FName, BUYER.City, BUYER.Street, BUYER.House, BUYER.Flat, VIEWING.Comments 
 FROM VIEWING
@@ -33,3 +33,11 @@ ON STAFF.Branch_no = BRANCH.Branch_no
 SELECT BUYER.Lname, BUYER.FName, BRANCH.Postcode, BRANCH.City, BRANCH.Street, BRANCH.House
 FROM BUYER, BRANCH
 WHERE BUYER.Branch_no = BRANCH.Branch_no
+
+--7) ѕоказать обектов недвижимости  и их контракты, если они есть?
+SELECT  CONTRACT.*, PROPERTY.City, PROPERTY.Street, PROPERTY.House, PROPERTY.Flat, PROPERTY.Rooms
+FROM PROPERTY
+LEFT JOIN CONTRACT
+ON CONTRACT.Property_no = PROPERTY.Property_no
+
+
